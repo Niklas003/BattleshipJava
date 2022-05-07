@@ -14,7 +14,7 @@ public class Main {
         GameField.printGameField(Size, Field);
         String[][] Player1 = Players.Player1SetShips(Size);
         String[][] Player2 = Players.Player2SetShips(Size);
-        Gameplay Game = new Gameplay(Player1, Player2);
+        Gameplay Game = new Gameplay(Player1, Player2, Size);
         Game.PlayerMakeGuess();
 
    }
