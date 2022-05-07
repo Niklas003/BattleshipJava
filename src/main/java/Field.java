@@ -14,7 +14,6 @@ public class Field {
     void printGameField(int size, String[][] Field){
 
         System.out.println(" ");
-        System.out.println("----- BATTLESHIP JAVA EDT. -----");
         for (int i = 0; i < size; i++) {
             System.out.print(" "+i+" ");
         }
@@ -25,8 +24,6 @@ public class Field {
             }
             System.out.println(" "+ i);
         }
-        System.out.println("----------Legenge----------");
-        System.out.println("[ ] Feld noch nicht entdeckt");
         System.out.println("[#] Feld mit Treffer");
         System.out.println("[/] Feld ohne Treffer");
     }

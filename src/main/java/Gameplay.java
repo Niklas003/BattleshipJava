@@ -62,8 +62,8 @@ public class Gameplay {
             System.out.println("TREFFER");
             GameField[guessY][guessX] = "[#]";
             Field[guessY][guessX] = "[#]";
-            Field Player2Field = new Field();
-            Player2Field.printGameField(Size, Field);
+            Field Player1Field = new Field();
+            Player1Field.printGameField(Size, Field);
 
             Player1MakeGuess(GameField, Field,Size,player1ShipPoints-1);
             return player1ShipPoints;
