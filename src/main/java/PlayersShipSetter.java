@@ -14,7 +14,7 @@ public class PlayersShipSetter {
         SetCorvette(Player1Field, FieldSize);
         SetFrigate(Player1Field, FieldSize);
         SetSubmarine(Player1Field, FieldSize);
-        System.out.println("Spieler 1 hat seine Schiffe gesetzt.");
+        System.out.println("Spieler 1 hat seine Schiffe gesetzt. Loesche bitte die Konsole\n -------------------------------");
         return Player1Field;
     }
 
@@ -31,7 +31,7 @@ public class PlayersShipSetter {
         SetCorvette(Player2Field, FieldSize);
         SetFrigate(Player2Field, FieldSize);
         SetSubmarine(Player2Field, FieldSize);
-        System.out.println("Spieler 2 hat seine Schiffe gesetzt.");
+        System.out.println("Spieler 2 hat seine Schiffe gesetzt. Loesche bitte die Konsole\n -------------------------------");
         return Player2Field;
     }
 

@@ -24,7 +24,5 @@ public class Field {
             }
             System.out.println(" "+ i);
         }
-        System.out.println("[#] Feld mit Treffer");
-        System.out.println("[/] Feld ohne Treffer");
     }
 }

@@ -25,18 +25,18 @@ public class Gameplay {
         System.out.println("Spiel vorbei");
     }
     int Player1MakeGuess(String[][] GameField,String[][] Field, int Size,int player2ShipPoints){
-        System.out.println(" \n Spieler 1 ist dran");
+        System.out.println("--------------------------------------------------- \n Spieler 1 ist dran");
+        Field Player2Field = new Field();
+        Player2Field.printGameField(Size, Field);
         System.out.print("Rate Wert X: ");
         int guessX = scanner.nextInt();
         System.out.print("Rate Wert Y: ");
         int guessY = scanner.nextInt();
 
         if (GameField[guessY][guessX] == "[*]"){
-            System.out.println("TREFFER");
+            System.out.println("TREFFER \n Spieler 2 Schiffspunkte: "+ (player2ShipPoints-1));
             GameField[guessY][guessX] = "[#]";
             Field[guessY][guessX] = "[#]";
-            Field Player2Field = new Field();
-            Player2Field.printGameField(Size, Field);
 
             Player1MakeGuess(GameField, Field,Size,player2ShipPoints-1);
             return player2ShipPoints;
@@ -45,25 +45,23 @@ public class Gameplay {
             System.out.println("DANEBEN");
             GameField[guessY][guessX] = "[/]";
             Field[guessY][guessX] = "[/]";
-            Field Player2Field = new Field();
-            Player2Field.printGameField(Size, Field);
             return player2ShipPoints;
         }
     }
 
     int Player2MakeGuess(String[][] GameField,String[][] Field, int Size,int player1ShipPoints){
-        System.out.println(" \n Spieler 2 ist dran");
+        System.out.println("--------------------------------------------------- \n Spieler 2 ist dran");
+        Field Player1Field = new Field();
+        Player1Field.printGameField(Size, Field);
         System.out.print("Rate Wert X: ");
         int guessX = scanner.nextInt();
         System.out.print("Rate Wert Y: ");
         int guessY = scanner.nextInt();
 
         if (GameField[guessY][guessX] == "[*]"){
-            System.out.println("TREFFER");
+            System.out.println("TREFFER \n Spieler 1 Schiffspunkte: "+ (player1ShipPoints-1));
             GameField[guessY][guessX] = "[#]";
             Field[guessY][guessX] = "[#]";
-            Field Player1Field = new Field();
-            Player1Field.printGameField(Size, Field);
 
             Player1MakeGuess(GameField, Field,Size,player1ShipPoints-1);
             return player1ShipPoints;
@@ -72,8 +70,6 @@ public class Gameplay {
             System.out.println("DANEBEN");
             GameField[guessY][guessX] = "[/]";
             Field[guessY][guessX] = "[/]";
-            Field Player2Field = new Field();
-            Player2Field.printGameField(Size, Field);
             return player1ShipPoints;
         }
 }
