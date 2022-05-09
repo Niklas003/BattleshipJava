@@ -1,5 +1,9 @@
 import java.util.Scanner;
 public class PlayersShipSetter {
+    int endX;
+    int endY;
+    int dir;
+
     Scanner scanner = new Scanner(System.in);
     String[][] Player1SetShips(int FieldSize){
         String[][] Player1Field = new String[FieldSize][FieldSize];
@@ -7,7 +11,6 @@ public class PlayersShipSetter {
             for (int j = 0; j < FieldSize; j++) {
                 Player1Field[i][j] = "[ ]";
             }
-
         }
 
         SetAircraftCarrier(Player1Field, FieldSize);
@@ -24,7 +27,6 @@ public class PlayersShipSetter {
             for (int j = 0; j < FieldSize; j++) {
                 Player2Field[i][j] = "[ ]";
             }
-
         }
 
         SetAircraftCarrier(Player2Field, FieldSize);
@@ -36,15 +38,12 @@ public class PlayersShipSetter {
     }
 
     void SetAircraftCarrier(String[][] PlayerField, int FieldSize){
-        /*
-        *  ######
-        * */
         System.out.println("Setze den Flugzeugtraeger (6 Felder)");
         System.out.print("Wert X: ");
         int valueX = scanner.nextInt();
         System.out.print("Wert Y: ");
         int valueY = scanner.nextInt();
-        System.out.print("Richtung (U, D, L, R) :");
+        System.out.print("Richtung int Input (U, D, L, R) :");
         int direction = scanner.nextInt();
         if (this.CheckIfValidInput(valueX, valueY, direction, 6, PlayerField, FieldSize)){
             this.setShip(direction, PlayerField, valueX, valueY, 6);
@@ -60,15 +59,12 @@ public class PlayersShipSetter {
     }
 
     void SetFrigate(String[][] PlayerField, int FieldSize){
-        /*
-        *   ####
-        * */
-        System.out.println("Setze die Frigatte (4 Felder)");
+        System.out.println("Setze die Fregatte (4 Felder)");
         System.out.print("Wert X: ");
         int valueX = scanner.nextInt();
         System.out.print("Wert Y: ");
         int valueY = scanner.nextInt();
-        System.out.print("Richtung (U, D, L, R) :");
+        System.out.print("Richtung int Input (U, D, L, R) :");
         int direction = scanner.nextInt();
         if (this.CheckIfValidInput(valueX, valueY, direction, 4, PlayerField, FieldSize)){
             this.setShip(direction, PlayerField, valueX, valueY, 4);
@@ -83,9 +79,6 @@ public class PlayersShipSetter {
     }
 
     void SetCorvette(String[][] PlayerField, int FieldSize){
-        /*
-        *   ###
-        * */
         System.out.println("Setze die Corvette (3 Felder)");
         System.out.print("Wert X: ");
         int valueX = scanner.nextInt();
@@ -106,9 +99,6 @@ public class PlayersShipSetter {
     }
 
     void SetSubmarine(String[][] PlayerField, int FieldSize){
-        /*
-        *   ##
-        * */
         System.out.println("Setze das U-Boot (2 Felder)");
         System.out.print("Wert X: ");
         int valueX = scanner.nextInt();
@@ -129,9 +119,7 @@ public class PlayersShipSetter {
     }
 
     boolean CheckIfValidInput(int valueX,int valueY,int direction, int ShipSize, String[][] PlayerField, int FieldSize){
-        int endX = 0;
-        int endY = 0;
-        int dir = 0;
+
         switch (direction){
             case 1:
                  endY = valueY - ShipSize-1;
@@ -151,10 +139,10 @@ public class PlayersShipSetter {
                 break;
         }
         for (int i = 0; i < ShipSize; i++) {
-            if (direction == 1 || direction == 2 &&PlayerField[valueY+(i*dir)][valueX] == "[ ]"){
+            if (direction == 1 || direction == 2 && PlayerField[valueY+(i*dir)][valueX] == "[ ]"){
                  continue;
             }
-            else if(direction == 3 || direction == 4 &&PlayerField[valueY][valueX+(i*dir)] == "[ ]"){
+            else if(direction == 3 || direction == 4 && PlayerField[valueY][valueX+(i*dir)] == "[ ]"){
                 continue;
             }
             else{
@@ -166,7 +154,7 @@ public class PlayersShipSetter {
     }
 
     void setShip(int direction, String[][] PlayerField, int valueX, int valueY, int Size){
-        switch (direction){
+        switch (direction){     //Hier dann noch die Schiffspositionen eintragen
             case 1:
                 for (int i = 0; i < Size; i++) {
                     PlayerField[valueY-i][valueX] = "[*]";

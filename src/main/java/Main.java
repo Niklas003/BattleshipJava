@@ -6,12 +6,12 @@ public class Main {
 
    public void playFleetBattle(){
 
-        int Size = 10;
         Field GameField = new Field();
         PlayersShipSetter Players = new PlayersShipSetter();
         TextManager Text = new TextManager();
 
         Text.WelcomeMessage();
+        int Size = GameField.RequestFieldSize();
         String[][] Field = GameField.setGameField(Size);
         GameField.printGameField(Size, Field);
         String[][] Player1 = Players.Player1SetShips(Size);
@@ -23,4 +23,4 @@ public class Main {
    }
 
 }
-//Schiffe versenken
+//Heute wollen wir Fische ertränken ähh...Schiffe versenken.

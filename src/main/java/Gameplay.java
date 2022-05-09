@@ -3,6 +3,8 @@ public class Gameplay {
     Scanner scanner = new Scanner(System.in);
     String[][] GameField1;
     String[][] GameField2;
+    int player1ShipPoints;
+    int player2ShipPoints;
 
     int GameSize;
     public Gameplay(String[][] Player1, String[][] Player2, int Size){
@@ -11,8 +13,6 @@ public class Gameplay {
         GameSize = Size;
     }
     void PlayerMakeGuess(){
-        int player1ShipPoints = 15;
-        int player2ShipPoints = 15;
         Field GameFieldOfPlayer1 = new Field();
         Field GameFieldOfPlayer2 = new Field();
         String[][] Player1Field = GameFieldOfPlayer1.setGameField(GameSize);
