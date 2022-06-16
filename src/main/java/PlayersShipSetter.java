@@ -5,117 +5,39 @@ public class PlayersShipSetter {
     int dir;
 
     Scanner scanner = new Scanner(System.in);
-    String[][] Player1SetShips(int FieldSize){
+    String[][] PlayerSetShips(int FieldSize, int PlayerNumber){
         String[][] Player1Field = new String[FieldSize][FieldSize];
         for (int i = 0; i < FieldSize; i++) {
             for (int j = 0; j < FieldSize; j++) {
                 Player1Field[i][j] = "[ ]";
             }
         }
-
-        SetAircraftCarrier(Player1Field, FieldSize);
-        SetCorvette(Player1Field, FieldSize);
-        SetFrigate(Player1Field, FieldSize);
-        SetSubmarine(Player1Field, FieldSize);
-        System.out.println("Spieler 1 hat seine Schiffe gesetzt. Loesche bitte die Konsole\n -------------------------------");
+        for (int i = 2; i < 6; i++) {
+            SetShips(Player1Field, FieldSize, i);
+        }
+        System.out.println("Spieler "+PlayerNumber+" hat seine Schiffe gesetzt. Loesche bitte die Konsole\n -------------------------------");
         return Player1Field;
     }
 
-    String[][] Player2SetShips(int FieldSize){
-        String[][] Player2Field = new String[FieldSize][FieldSize];
-        for (int i = 0; i < FieldSize; i++) {
-            for (int j = 0; j < FieldSize; j++) {
-                Player2Field[i][j] = "[ ]";
-            }
-        }
-
-        SetAircraftCarrier(Player2Field, FieldSize);
-        SetCorvette(Player2Field, FieldSize);
-        SetFrigate(Player2Field, FieldSize);
-        SetSubmarine(Player2Field, FieldSize);
-        System.out.println("Spieler 2 hat seine Schiffe gesetzt. Loesche bitte die Konsole\n -------------------------------");
-        return Player2Field;
-    }
-
-    void SetAircraftCarrier(String[][] PlayerField, int FieldSize){
-        System.out.println("Setze den Flugzeugtraeger (6 Felder)");
+    void SetShips(String[][] PlayerField, int FieldSize, int Shipsize){
+        System.out.println("Setze dein "+Shipsize+"er Schiff");
         System.out.print("Wert X: ");
         int valueX = scanner.nextInt();
         System.out.print("Wert Y: ");
         int valueY = scanner.nextInt();
         System.out.print("Richtung int Input (U, D, L, R) :");
         int direction = scanner.nextInt();
-        if (this.CheckIfValidInput(valueX, valueY, direction, 6, PlayerField, FieldSize)){
-            this.setShip(direction, PlayerField, valueX, valueY, 6);
+        if (this.CheckIfValidInput(valueX, valueY, direction, Shipsize, PlayerField, FieldSize)){
+            this.setShip(direction, PlayerField, valueX, valueY, Shipsize);
 
             Field PlayersField = new Field();
             PlayersField.printGameField(FieldSize, PlayerField);
         }
         else{
             System.out.println("!!! KONFLIKT !!!");
-            SetAircraftCarrier(PlayerField, FieldSize);
+            SetShips(PlayerField, FieldSize, Shipsize);
         }
 
-    }
-
-    void SetFrigate(String[][] PlayerField, int FieldSize){
-        System.out.println("Setze die Fregatte (4 Felder)");
-        System.out.print("Wert X: ");
-        int valueX = scanner.nextInt();
-        System.out.print("Wert Y: ");
-        int valueY = scanner.nextInt();
-        System.out.print("Richtung int Input (U, D, L, R) :");
-        int direction = scanner.nextInt();
-        if (this.CheckIfValidInput(valueX, valueY, direction, 4, PlayerField, FieldSize)){
-            this.setShip(direction, PlayerField, valueX, valueY, 4);
-
-            Field PlayersField = new Field();
-            PlayersField.printGameField(FieldSize, PlayerField);
-        }
-        else{
-            System.out.println("!!! KONFLIKT !!!");
-            SetFrigate(PlayerField, FieldSize);
-        }
-    }
-
-    void SetCorvette(String[][] PlayerField, int FieldSize){
-        System.out.println("Setze die Corvette (3 Felder)");
-        System.out.print("Wert X: ");
-        int valueX = scanner.nextInt();
-        System.out.print("Wert Y: ");
-        int valueY = scanner.nextInt();
-        System.out.print("Richtung (U, D, L, R) :");
-        int direction = scanner.nextInt();
-        if (this.CheckIfValidInput(valueX, valueY, direction, 3, PlayerField, FieldSize)){
-            this.setShip(direction, PlayerField, valueX, valueY, 3);
-
-            Field PlayersField = new Field();
-            PlayersField.printGameField(FieldSize, PlayerField);
-        }
-        else{
-            System.out.println("!!! KONFLIKT !!!");
-            SetCorvette(PlayerField, FieldSize);
-        }
-    }
-
-    void SetSubmarine(String[][] PlayerField, int FieldSize){
-        System.out.println("Setze das U-Boot (2 Felder)");
-        System.out.print("Wert X: ");
-        int valueX = scanner.nextInt();
-        System.out.print("Wert Y: ");
-        int valueY = scanner.nextInt();
-        System.out.print("Richtung (U, D, L, R) :");
-        int direction = scanner.nextInt();
-        if (this.CheckIfValidInput(valueX, valueY, direction, 2, PlayerField, FieldSize)){
-            this.setShip(direction, PlayerField, valueX, valueY, 2);
-
-            Field PlayersField = new Field();
-            PlayersField.printGameField(FieldSize, PlayerField);
-        }
-        else{
-            System.out.println("!!! KONFLIKT !!!");
-            SetSubmarine(PlayerField, FieldSize);
-        }
     }
 
     boolean CheckIfValidInput(int valueX,int valueY,int direction, int ShipSize, String[][] PlayerField, int FieldSize){
@@ -154,7 +76,7 @@ public class PlayersShipSetter {
     }
 
     void setShip(int direction, String[][] PlayerField, int valueX, int valueY, int Size){
-        switch (direction){     //Hier dann noch die Schiffspositionen eintragen
+        switch (direction){
             case 1:
                 for (int i = 0; i < Size; i++) {
                     PlayerField[valueY-i][valueX] = "[*]";

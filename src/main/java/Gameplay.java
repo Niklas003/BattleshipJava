@@ -3,8 +3,8 @@ public class Gameplay {
     Scanner scanner = new Scanner(System.in);
     String[][] GameField1;
     String[][] GameField2;
-    int player1ShipPoints;
-    int player2ShipPoints;
+    int player1ShipPoints = 14;
+    int player2ShipPoints = 14;
 
     int GameSize;
     public Gameplay(String[][] Player1, String[][] Player2, int Size){
@@ -18,9 +18,9 @@ public class Gameplay {
         String[][] Player1Field = GameFieldOfPlayer1.setGameField(GameSize);
         String[][] Player2Field = GameFieldOfPlayer2.setGameField(GameSize);
 
-        while(player1ShipPoints != 0 || player2ShipPoints != 0){
-            this.Player1MakeGuess(GameField2,Player1Field,GameSize,player2ShipPoints);
-            this.Player2MakeGuess(GameField1,Player2Field,GameSize,player1ShipPoints);
+        while(this.player1ShipPoints != 0 && this.player2ShipPoints != 0){
+            this.Player1MakeGuess(GameField2,Player1Field,GameSize,this.player2ShipPoints);
+            this.Player2MakeGuess(GameField1,Player2Field,GameSize,this.player1ShipPoints);
         }
         System.out.println("Spiel vorbei");
     }
@@ -37,16 +37,15 @@ public class Gameplay {
             System.out.println("TREFFER \n Spieler 2 Schiffspunkte: "+ (player2ShipPoints-1));
             GameField[guessY][guessX] = "[#]";
             Field[guessY][guessX] = "[#]";
-
-            Player1MakeGuess(GameField, Field,Size,player2ShipPoints-1);
-            return player2ShipPoints;
+            this.player2ShipPoints--;
+            Player1MakeGuess(GameField, Field,Size,this.player2ShipPoints);
         }
         else{
             System.out.println("DANEBEN");
             GameField[guessY][guessX] = "[/]";
             Field[guessY][guessX] = "[/]";
-            return player2ShipPoints;
         }
+        return this.player2ShipPoints;
     }
 
     int Player2MakeGuess(String[][] GameField,String[][] Field, int Size,int player1ShipPoints){
@@ -62,15 +61,15 @@ public class Gameplay {
             System.out.println("TREFFER \n Spieler 1 Schiffspunkte: "+ (player1ShipPoints-1));
             GameField[guessY][guessX] = "[#]";
             Field[guessY][guessX] = "[#]";
-
-            Player1MakeGuess(GameField, Field,Size,player1ShipPoints-1);
-            return player1ShipPoints;
+            this.player1ShipPoints--;
+            Player1MakeGuess(GameField, Field,Size,this.player1ShipPoints);
         }
         else{
             System.out.println("DANEBEN");
             GameField[guessY][guessX] = "[/]";
             Field[guessY][guessX] = "[/]";
-            return player1ShipPoints;
         }
-}
+        return this.player1ShipPoints;
+    }
+
 }
